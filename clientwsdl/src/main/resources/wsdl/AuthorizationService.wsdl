@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="AuthorizationServiceService" targetNamespace="http://authorization.service.soap.mika.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://authorization.service.soap.mika.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:tns="http://authorization.service.soap.mika.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://authorization.service.soap.mika.com/">
+  <xs:element name="AutObject" type="tns:authObject"/>
+  <xs:element name="CanDeleteResponse" type="tns:CanDeleteResponse"/>
+  <xs:element name="CanReadResponse" type="tns:CanReadResponse"/>
+  <xs:element name="CanWriteResponse" type="tns:CanWriteResponse"/>
+  <xs:element name="GetAccessByRoleResponse" type="tns:GetAccessByRoleResponse"/>
+  <xs:element name="HasAccessResponse" type="tns:HasAccessResponse"/>
+  <xs:element name="canDelete" type="tns:canDelete"/>
+  <xs:element name="canRead" type="tns:canRead"/>
+  <xs:element name="canWrite" type="tns:canWrite"/>
+  <xs:element name="getAccessByRole" type="tns:getAccessByRole"/>
+  <xs:element name="hasAccess" type="tns:hasAccess"/>
+  <xs:complexType name="canDelete">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="role" type="xs:string"/>
+      <xs:element minOccurs="0" name="entity" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CanDeleteResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="canWrite">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="role" type="xs:string"/>
+      <xs:element minOccurs="0" name="entity" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CanWriteResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAccessByRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="role" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetAccessByRoleResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthObject" type="tns:authObject"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="authObject">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roles" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="entities" type="tns:entityAccess"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="entityAccess">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="entity" type="xs:string"/>
+      <xs:element minOccurs="0" name="allowActions" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="canRead">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="role" type="xs:string"/>
+      <xs:element minOccurs="0" name="entity" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CanReadResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="hasAccess">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="role" type="xs:string"/>
+      <xs:element minOccurs="0" name="entity" type="xs:string"/>
+      <xs:element minOccurs="0" name="action" type="tns:access"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HasAccessResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="access">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CREATE"/>
+      <xs:enumeration value="READ"/>
+      <xs:enumeration value="UPDATE"/>
+      <xs:enumeration value="DELETE"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ResourceNotFound" type="tns:ResourceNotFound"/>
+  <xs:complexType name="ResourceNotFound">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getAccessByRoleResponse">
+    <wsdl:part name="parameters" element="tns:GetAccessByRoleResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="canDelete">
+    <wsdl:part name="parameters" element="tns:canDelete">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="canWrite">
+    <wsdl:part name="parameters" element="tns:canWrite">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAccessByRole">
+    <wsdl:part name="parameters" element="tns:getAccessByRole">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ResourceNotFoundException">
+    <wsdl:part name="ResourceNotFoundException" element="tns:ResourceNotFound">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="canDeleteResponse">
+    <wsdl:part name="parameters" element="tns:CanDeleteResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="canWriteResponse">
+    <wsdl:part name="parameters" element="tns:CanWriteResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="hasAccessResponse">
+    <wsdl:part name="parameters" element="tns:HasAccessResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="canRead">
+    <wsdl:part name="parameters" element="tns:canRead">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="canReadResponse">
+    <wsdl:part name="parameters" element="tns:CanReadResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="hasAccess">
+    <wsdl:part name="parameters" element="tns:hasAccess">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AuthorizationService">
+    <wsdl:operation name="canDelete">
+      <wsdl:input name="canDelete" message="tns:canDelete">
+    </wsdl:input>
+      <wsdl:output name="canDeleteResponse" message="tns:canDeleteResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="canWrite">
+      <wsdl:input name="canWrite" message="tns:canWrite">
+    </wsdl:input>
+      <wsdl:output name="canWriteResponse" message="tns:canWriteResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAccessByRole">
+      <wsdl:input name="getAccessByRole" message="tns:getAccessByRole">
+    </wsdl:input>
+      <wsdl:output name="getAccessByRoleResponse" message="tns:getAccessByRoleResponse">
+    </wsdl:output>
+      <wsdl:fault name="ResourceNotFoundException" message="tns:ResourceNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="canRead">
+      <wsdl:input name="canRead" message="tns:canRead">
+    </wsdl:input>
+      <wsdl:output name="canReadResponse" message="tns:canReadResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hasAccess">
+      <wsdl:input name="hasAccess" message="tns:hasAccess">
+    </wsdl:input>
+      <wsdl:output name="hasAccessResponse" message="tns:hasAccessResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AuthorizationServiceServiceSoapBinding" type="tns:AuthorizationService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="canDelete">
+      <soap:operation soapAction="urn:canDelete" style="document"/>
+      <wsdl:input name="canDelete">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="canDeleteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="canWrite">
+      <soap:operation soapAction="urn:canWrite" style="document"/>
+      <wsdl:input name="canWrite">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="canWriteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAccessByRole">
+      <soap:operation soapAction="urn:getAccessByRole" style="document"/>
+      <wsdl:input name="getAccessByRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAccessByRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ResourceNotFoundException">
+        <soap:fault name="ResourceNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="canRead">
+      <soap:operation soapAction="urn:canRead" style="document"/>
+      <wsdl:input name="canRead">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="canReadResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hasAccess">
+      <soap:operation soapAction="urn:hasAccess" style="document"/>
+      <wsdl:input name="hasAccess">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="hasAccessResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AuthorizationServiceService">
+    <wsdl:port name="AuthorizationServicePort" binding="tns:AuthorizationServiceServiceSoapBinding">
+      <soap:address location="http://localhost:8081/ws/auth"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
